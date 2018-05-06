@@ -1,0 +1,32 @@
+<!-- inventory page sample with vue from vuejs.org --> 
+
+<div id="app">
+	<h2>{{ product }} are in stock</h2>
+	<li v-for="p in product_list">
+		{{ p.name }} is in stock
+	</li>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			product: 'Boots',
+			product_list: [
+				'Boots',
+				'Socks',
+				'Pantaloons',
+				'Khakis'
+			]
+		},
+		created () {
+			fetch('https://next.json-generator.com/api/json/get/4yzR7VPT4')
+			.then(response => response.json())
+			.then(json => {
+				this.product_list = json[0].friends
+			})
+		}
+	})
+	var product = 'boots'
+</script>
